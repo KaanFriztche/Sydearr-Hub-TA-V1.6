@@ -1,5 +1,20 @@
+local success, err = pcall(function()
+loadstring(game:HttpGet("https://raw.githubusercontent.com/samuraa1/Solara-Hub/refs/heads/main/Solara%20Hub.lua"))()
+end)
+if success then
+local solaraGui = nil
+local timeout = 5
+local elapsed = 0
+repeat
+solaraGui = game:GetService("CoreGui"):FindFirstChild("SolaraHub")
+wait(0.5)
+elapsed = elapsed + 0.5
+until solaraGui or elapsed >= timeout
+wait(1)
+if solaraGui then
+solaraGui:Destroy()
+end
 loadstring(game:HttpGet("https://raw.githubusercontent.com/KaanFriztche/Sydearr-Hub-TA-V1.6.1/refs/heads/main/PCobf.lua"))()
-
-task.wait(5)
-
-loadstring(game:HttpGet("https://cdn.wearedevs.net/scripts/Solara%20Hub%20v3.txt"))()
+else
+warn(tostring(err))
+end
