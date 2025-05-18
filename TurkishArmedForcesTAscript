@@ -1,0 +1,89 @@
+
+--Not: Bu Guiyi Yapay Zeka Yapmıştır. Bilginiz olsun.
+
+local TweenService = game:GetService("TweenService")
+
+local ScreenGui = Instance.new("ScreenGui")
+local MainFrame = Instance.new("Frame")
+local UICorner = Instance.new("UICorner")
+local UIStroke = Instance.new("UIStroke")
+local Title = Instance.new("TextLabel")
+local MobileButton = Instance.new("TextButton")
+local PCButton = Instance.new("TextButton")
+
+ScreenGui.Name = "SydearrGui"
+ScreenGui.Parent = game.Players.LocalPlayer:WaitForChild("PlayerGui")
+ScreenGui.ZIndexBehavior = Enum.ZIndexBehavior.Sibling
+
+MainFrame.Name = "MainFrame"
+MainFrame.Parent = ScreenGui
+MainFrame.AnchorPoint = Vector2.new(0.5, 0.5)
+MainFrame.Position = UDim2.new(0.5, 0, 0.5, 0)
+MainFrame.Size = UDim2.new(0, 350, 0, 220)
+MainFrame.BackgroundColor3 = Color3.fromRGB(25, 25, 25)
+MainFrame.BackgroundTransparency = 0.1
+
+UICorner.CornerRadius = UDim.new(0, 16)
+UICorner.Parent = MainFrame
+
+UIStroke.Parent = MainFrame
+UIStroke.Color = Color3.fromRGB(255, 255, 255)
+UIStroke.Thickness = 1.5
+
+Title.Name = "Title"
+Title.Parent = MainFrame
+Title.BackgroundTransparency = 1.0
+Title.Position = UDim2.new(0, 0, 0, 10)
+Title.Size = UDim2.new(1, 0, 0, 40)
+Title.Font = Enum.Font.GothamBold
+Title.Text = "Sydearr Hub UI"
+Title.TextColor3 = Color3.fromRGB(255, 255, 255)
+Title.TextSize = 22
+Title.TextScaled = true
+
+MobileButton.Name = "MobileButton"
+MobileButton.Parent = MainFrame
+MobileButton.Position = UDim2.new(0.1, 0, 0.4, 0)
+MobileButton.Size = UDim2.new(0.35, 0, 0.25, 0)
+MobileButton.Text = "Mobile Script"
+MobileButton.Font = Enum.Font.Gotham
+MobileButton.TextColor3 = Color3.fromRGB(255, 255, 255)
+MobileButton.TextSize = 18
+MobileButton.BackgroundColor3 = Color3.fromRGB(0, 0, 0)
+MobileButton.AutoButtonColor = true
+Instance.new("UICorner", MobileButton)
+
+PCButton.Name = "PCButton"
+PCButton.Parent = MainFrame
+PCButton.Position = UDim2.new(0.55, 0, 0.4, 0)
+PCButton.Size = UDim2.new(0.35, 0, 0.25, 0)
+PCButton.Text = "PC Script"
+PCButton.Font = Enum.Font.Gotham
+PCButton.TextColor3 = Color3.fromRGB(255, 255, 255)
+PCButton.TextSize = 18
+PCButton.BackgroundColor3 = Color3.fromRGB(0, 0, 0)
+PCButton.AutoButtonColor = true
+Instance.new("UICorner", PCButton)
+
+-- Kapanma animasyonu
+local function animateAndClose()
+    local tweenOut = TweenService:Create(MainFrame, TweenInfo.new(0.5, Enum.EasingStyle.Quad, Enum.EasingDirection.Out), {
+        Size = UDim2.new(0, 0, 0, 0),
+        Position = UDim2.new(0.5, 0, 0.5, 0)
+    })
+    tweenOut:Play()
+    tweenOut.Completed:Connect(function()
+        ScreenGui:Destroy()
+    end)
+end
+
+-- Butonlar
+MobileButton.MouseButton1Click:Connect(function()
+    animateAndClose()
+    loadstring(game:HttpGet('https://raw.githubusercontent.com/KaanFriztche/Sydearr-Hub-TA-V1.6.1/refs/heads/main/SydearrHubTAMobileV1.6.1'))()
+end)
+
+PCButton.MouseButton1Click:Connect(function()
+    animateAndClose()
+    loadstring(game:HttpGet('https://raw.githubusercontent.com/KaanFriztche/Sydearr-Hub-TA-V1.6.1/refs/heads/main/SydearrHubTAPCv1.6.1'))()
+end)
